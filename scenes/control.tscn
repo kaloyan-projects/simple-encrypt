@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://djn3sjv5biovx"]
+
+[ext_resource type="Script" path="res://scripts/Control.gd" id="1_10j0k"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_10j0k")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cipher" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CipherLabel" type="Label" parent="CenterContainer/Cipher"]
+layout_mode = 2
+text = "Метод за шифриране"
+
+[node name="CipherMethod" type="OptionButton" parent="CenterContainer/Cipher"]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Шифър на Вижинер"
+popup/item_0/id = 0
+popup/item_1/text = "Транспозиционен шифър"
+popup/item_1/id = 1
+
+[node name="Method" type="OptionButton" parent="CenterContainer/Cipher"]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Шифриране"
+popup/item_0/id = 0
+popup/item_1/text = "Дешифриране"
+popup/item_1/id = 1
+
+[node name="MessageLabel" type="Label" parent="CenterContainer/Cipher"]
+layout_mode = 2
+text = "Съобщение"
+
+[node name="MessageField" type="TextEdit" parent="CenterContainer/Cipher"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+placeholder_text = "Напишете съобщение"
+
+[node name="KeywordLabel" type="Label" parent="CenterContainer/Cipher"]
+layout_mode = 2
+text = "Ключова дума"
+
+[node name="KeywordField" type="LineEdit" parent="CenterContainer/Cipher"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Напишете ключова дума"
+clear_button_enabled = true
+select_all_on_focus = true
+
+[node name="Button" type="Button" parent="CenterContainer/Cipher"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Шифриране"
+
+[node name="Result" type="TextEdit" parent="CenterContainer/Cipher"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+placeholder_text = "Резултат"
+editable = false
+
+[node name="ErrorDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true
+title = "Грешка"
+initial_position = 5
+size = Vector2i(231, 100)
+dialog_text = "Невалидни входни данни."
+
+[connection signal="item_selected" from="CenterContainer/Cipher/CipherMethod" to="." method="_on_cipher_method_item_selected"]
+[connection signal="item_selected" from="CenterContainer/Cipher/Method" to="." method="_on_method_item_selected"]
+[connection signal="pressed" from="CenterContainer/Cipher/Button" to="." method="_on_button_pressed"]
