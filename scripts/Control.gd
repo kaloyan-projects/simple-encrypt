@@ -99,10 +99,10 @@ func encrypt_transposition_cypher(message : String, keyword : String) -> String:
 	var message_colonised = transpose_array(message_table, keyword)
 	message_colonised.sort()
 	message_colonised = remove_first(message_colonised)
-	return join_the_fucking_array(message_colonised)
+	return join_the_array(message_colonised)
 
 
-func join_the_fucking_array(arr):
+func join_the_array(arr):
 	var result = ""
 	for row in arr:
 		for elem in row:
